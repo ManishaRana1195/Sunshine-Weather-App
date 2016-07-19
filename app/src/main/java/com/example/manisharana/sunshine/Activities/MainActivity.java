@@ -1,7 +1,9 @@
-package com.example.manisharana.sunshine;
+package com.example.manisharana.sunshine.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.manisharana.sunshine.R;
 
 public class MainActivity extends AppCompatActivity {
 

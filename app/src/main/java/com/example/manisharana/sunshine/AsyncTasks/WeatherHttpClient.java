@@ -1,10 +1,12 @@
-package com.example.manisharana.sunshine;
+package com.example.manisharana.sunshine.AsyncTasks;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+
+import com.example.manisharana.sunshine.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -69,6 +71,7 @@ public class WeatherHttpClient extends AsyncTask<String,Void,String> {
         try {
             JSONObject jsonObject = new JSONObject(jsonStr);
             JSONObject cityObject = jsonObject.getJSONObject("city");
+            String name = cityObject.getString("name");
             JSONObject coordObject = cityObject.getJSONObject("coord");
             double longitude = coordObject.getDouble("lon");
             double latitude = coordObject.getDouble("lat");

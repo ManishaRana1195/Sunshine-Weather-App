@@ -16,13 +16,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.example.manisharana.sunshine.ForecastDetailActivity;
+import com.example.manisharana.sunshine.Activities.ForecastDetailActivity;
 import com.example.manisharana.sunshine.R;
-import com.example.manisharana.sunshine.SettingsActivity;
-import com.example.manisharana.sunshine.SettingsFragment;
-import com.example.manisharana.sunshine.WeatherHttpClient;
+import com.example.manisharana.sunshine.Activities.SettingsActivity;
+import com.example.manisharana.sunshine.AsyncTasks.WeatherHttpClient;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -74,6 +72,9 @@ public class WeeklyForecastFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String defCity = sharedPreferences.getString(getString(R.string.preference_default_city), getString(R.string.Bangalore));
+
         switch(item.getItemId()) {
             case R.id.action_refresh:
                 fetchWeatherTask();
@@ -83,8 +84,6 @@ public class WeeklyForecastFragment extends Fragment {
                 startActivity(intent);
                 return true;
             case R.id.action_view:
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                String defCity = sharedPreferences.getString(getString(R.string.preference_default_city), getString(R.string.Bangalore));
                 Uri locationUri = Uri.parse("geo:0,0?" + defCity).buildUpon().appendQueryParameter("q", defCity).build();
                 Intent viewIntent = new Intent(Intent.ACTION_VIEW, locationUri);
                 if (viewIntent.resolveActivity(getActivity().getPackageManager())!=null){
