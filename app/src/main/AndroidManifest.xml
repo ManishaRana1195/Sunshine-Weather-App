@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ForecastDetailActivity" android:parentActivityName=".MainActivity" android:label="@string/detail_activity"> </activity>
+        <activity android:name=".SettingsActivity" android:parentActivityName=".MainActivity" android:label="@string/action_settings"> </activity>
     </application>
 
 </manifest>

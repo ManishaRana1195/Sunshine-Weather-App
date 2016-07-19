@@ -33,15 +33,16 @@ public class WeatherHttpClient extends AsyncTask<String,Void,String> {
     }
 
     @Override
-    protected String doInBackground(String... strings) {
+    protected String doInBackground(String... values) {
+        if(values == null){
+            return null;
+        }
+
         Response response;
         URL url;
         String FORECAST_BASE_URL = "http://api.openweathermap.org/data/2.5/forecast/daily?";
-        String location = "Bangalore";
-        String unit = "metric";
-        String days = "7";
         String appID = context.getString(R.string.MY_WEATHER_API_KEY);
-        Uri builtUri = Uri.parse(FORECAST_BASE_URL).buildUpon().appendQueryParameter("q", location).appendQueryParameter("units", unit).appendQueryParameter("cnt", days).appendQueryParameter("APPID", appID).build();
+        Uri builtUri = Uri.parse(FORECAST_BASE_URL).buildUpon().appendQueryParameter("q", values[0]).appendQueryParameter("units", values[1]).appendQueryParameter("cnt", values[2]).appendQueryParameter("APPID", appID).build();
         try {
             url = new URL(builtUri.toString());
             OkHttpClient client = new OkHttpClient();
@@ -106,7 +107,6 @@ public class WeatherHttpClient extends AsyncTask<String,Void,String> {
     }
 
     private String getHighLowFormat(double max, double min) {
-        System.out.println("------------------------------"+max+"  "+min);
         return Math.round(max)+"/"+Math.round(min);
     }
 

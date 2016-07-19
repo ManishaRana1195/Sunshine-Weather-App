@@ -1,7 +1,9 @@
 package com.example.manisharana.sunshine.Fragments;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,6 +19,8 @@ import android.widget.TextView;
 
 import com.example.manisharana.sunshine.ForecastDetailActivity;
 import com.example.manisharana.sunshine.R;
+import com.example.manisharana.sunshine.SettingsActivity;
+import com.example.manisharana.sunshine.SettingsFragment;
 import com.example.manisharana.sunshine.WeatherHttpClient;
 
 import java.util.ArrayList;
@@ -71,12 +75,24 @@ public class WeeklyForecastFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.action_refresh:
-                new WeatherHttpClient(getActivity(),weatherDataAdapter).execute("");
+                fetchWeatherTask();
                 return true;
             case R.id.action_settings:
+                Intent intent = new Intent(getActivity(), SettingsActivity.class);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void fetchWeatherTask() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String defCity = sharedPreferences.getString(getString(R.string.preference_default_city), getString(R.string.Bangalore));
+        String defUnit = sharedPreferences.getString(getString(R.string.preference_default_unit), getString(R.string.metric));
+        String defDays = sharedPreferences.getString(getString(R.string.preference_default_days), getString(R.string.week));
+
+
+        new WeatherHttpClient(getActivity(),weatherDataAdapter).execute(defCity,defUnit,defDays);
     }
 }
