@@ -15,4 +15,6 @@
     <string name="enter_default_city">Enter city name</string>
     <string name="select_unit">Select unit type</string>
     <string name="enter_days">Number of days</string>
+    <string name="view_location">View Location</string>
+    <string name="action_share">Share</string>
 </resources>

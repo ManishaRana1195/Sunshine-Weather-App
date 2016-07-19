@@ -2,6 +2,7 @@ package com.example.manisharana.sunshine.Fragments;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
@@ -80,6 +81,15 @@ public class WeeklyForecastFragment extends Fragment {
             case R.id.action_settings:
                 Intent intent = new Intent(getActivity(), SettingsActivity.class);
                 startActivity(intent);
+                return true;
+            case R.id.action_view:
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                String defCity = sharedPreferences.getString(getString(R.string.preference_default_city), getString(R.string.Bangalore));
+                Uri locationUri = Uri.parse("geo:0,0?" + defCity).buildUpon().appendQueryParameter("q", defCity).build();
+                Intent viewIntent = new Intent(Intent.ACTION_VIEW, locationUri);
+                if (viewIntent.resolveActivity(getActivity().getPackageManager())!=null){
+                    startActivity(viewIntent);
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

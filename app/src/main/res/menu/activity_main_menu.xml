@@ -4,5 +4,7 @@
         android:title="@string/action_refresh"> </item>
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"> </item>
+    <item android:id="@+id/action_view"
+        android:title="@string/view_location"/>
 
 </menu>
