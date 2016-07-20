@@ -24,7 +24,7 @@ public class LocationEntry implements BaseColumns {
 
     public static String getCreateLocationEntry() {
         return "CREATE TABLE " + TABLE_NAME + " ( "
-                + _ID + " INTEGER PRIMARY KEY"
+                + _ID + " INTEGER PRIMARY KEY, "
                 + COLUMN_LOC_SETTING + " TEXT UNIQUE NOT NULL, "
                 + COLUMN_CITY_NAME + " TEXT NOT NULL, "
                 + COLUMN_LATITUDE + " REAL NOT NULL, "
@@ -39,7 +39,4 @@ public class LocationEntry implements BaseColumns {
         return "DROP TABLE IF EXISTS " + TABLE_NAME;
     }
 
-    public static long saveLocationEntry(String locationSetting, String cityName, double latitude, double longitude){
-        return -1;
-    }
 }

@@ -2,6 +2,7 @@ package com.example.manisharana.sunshine.Data;
 
 import android.content.ContentResolver;
 import android.content.ContentUris;
+import android.database.Cursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
@@ -29,7 +30,7 @@ public class WeatherEntry implements BaseColumns {
 
     public static String getCreateWeatherEntry() {
         return "CREATE TABLE " + TABLE_NAME + " ( "
-                + _ID + "INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMN_DESC + " TEXT NOT NULL, "
                 + COLUMN_DATE + " INTEGER NOT NULL, "
                 + COLUMN_MAX + " REAL NOT NULL, "
@@ -58,7 +59,7 @@ public class WeatherEntry implements BaseColumns {
         return Long.parseLong(uri.getPathSegments().get(2));
     }
 
-    public static long getStartDateFromUri(Uri uri) {
+    public static long getStartingDateFromUri(Uri uri) {
         String dateString = uri.getQueryParameter(COLUMN_DATE);
         if (null != dateString && dateString.length() > 0)
             return Long.parseLong(dateString);
@@ -66,15 +67,15 @@ public class WeatherEntry implements BaseColumns {
             return 0;
     }
 
-    public static Uri buildWeatherUri(long id){     //not required
+    public static Uri buildWeatherUri(long id){
         return ContentUris.withAppendedId(CONTENT_URI,id);
     }
 
-    public static Uri buildWeatherLocationUri(String locationSetting){  // not required
+    public static Uri buildWeatherLocationUri(String locationSetting){
         return CONTENT_URI.buildUpon().appendPath(locationSetting).build();
     }
 
-    public static Uri buildWeatherLocationWithStartDate(String locationSetting,long startDate){
+    public static Uri buildWeatherLocationWithStartingDate(String locationSetting,long startDate){
         return CONTENT_URI.buildUpon().appendPath(locationSetting).appendQueryParameter(COLUMN_DATE,Long.toString(startDate)).build();
     }
 
@@ -82,7 +83,9 @@ public class WeatherEntry implements BaseColumns {
         return  CONTENT_URI.buildUpon().appendPath(locationSetting).appendPath(Long.toString(date)).build();
     }
 
-
+    public static byte[] normalizeDate(long dateValue) {
+        return new byte[0];
+    }
 }
 
 
