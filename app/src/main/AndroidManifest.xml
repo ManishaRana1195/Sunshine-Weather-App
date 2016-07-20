@@ -17,6 +17,9 @@
         </activity>
         <activity android:name=".Activities.ForecastDetailActivity" android:parentActivityName=".Activities.MainActivity" android:label="@string/detail_activity"> </activity>
         <activity android:name=".Activities.SettingsActivity" android:parentActivityName=".Activities.MainActivity" android:label="@string/action_settings"> </activity>
+        <provider
+            android:authorities="com.example.manisharana.sunshine"
+            android:name=".Providers.WeatherProvider"/>
     </application>
 
 </manifest>
