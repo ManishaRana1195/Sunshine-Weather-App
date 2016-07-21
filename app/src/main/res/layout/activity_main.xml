@@ -13,5 +13,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/weekly_forecast_fragment"
-        class="com.example.manisharana.sunshine.Fragments.WeeklyForecastFragment" > </fragment>
+        class="com.example.manisharana.sunshine.Fragments.ForecastFragment" > </fragment>
 </RelativeLayout>

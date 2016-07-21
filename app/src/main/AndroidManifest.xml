@@ -19,7 +19,9 @@
         <activity android:name=".Activities.SettingsActivity" android:parentActivityName=".Activities.MainActivity" android:label="@string/action_settings"> </activity>
         <provider
             android:authorities="com.example.manisharana.sunshine"
-            android:name=".Providers.WeatherProvider"/>
+            android:name=".Providers.WeatherProvider"
+            android:enabled="true"
+            android:exported="false"/>
     </application>
 
 </manifest>
