@@ -83,9 +83,6 @@ public class WeatherEntry implements BaseColumns {
         return  CONTENT_URI.buildUpon().appendPath(locationSetting).appendPath(Long.toString(date)).build();
     }
 
-    public static byte[] normalizeDate(long dateValue) {
-        return new byte[0];
-    }
 }
 
 

@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.text.format.Time;
 
 import com.example.manisharana.sunshine.Data.WeatherEntry;
 
@@ -47,6 +48,17 @@ public class Utility {
     public static boolean isMetric(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         return prefs.getString(context.getString(R.string.preference_default_unit), context.getString(R.string.metric)).equals(context.getString(R.string.metric));
+    }
+
+    public static long normalizeDate(long startDate) {
+        GregorianCalendar gc = new GregorianCalendar();
+        gc.setTimeInMillis(startDate);
+        gc.set(GregorianCalendar.HOUR_OF_DAY, 0);
+        gc.set(GregorianCalendar.MINUTE, 0);
+        gc.set(GregorianCalendar.SECOND, 0);
+        gc.set(GregorianCalendar.MILLISECOND,0);
+
+        return gc.getTimeInMillis();
     }
 
 }

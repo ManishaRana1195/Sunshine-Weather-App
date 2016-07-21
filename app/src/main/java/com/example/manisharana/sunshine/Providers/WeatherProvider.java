@@ -12,6 +12,7 @@ import android.support.annotation.Nullable;
 import com.example.manisharana.sunshine.Data.LocationEntry;
 import com.example.manisharana.sunshine.Data.WeatherDbHelper;
 import com.example.manisharana.sunshine.Data.WeatherEntry;
+import com.example.manisharana.sunshine.Utility;
 
 public class WeatherProvider extends ContentProvider {
 
@@ -148,8 +149,7 @@ public class WeatherProvider extends ContentProvider {
 
         switch (uriMatcher.match(uri)) {
             case WEATHER:
-
-                //   normalizeDate(values);
+                normalizeDate(contentValues);
                 long _id = db.insert(WeatherEntry.TABLE_NAME, null, contentValues);
                 if (_id > 0)
                     returnUri = WeatherEntry.buildWeatherUri(_id);
@@ -158,7 +158,6 @@ public class WeatherProvider extends ContentProvider {
                 break;
 
             case LOCATION:
-                //   normalizeDate(values);
                 long loc_id = db.insert(LocationEntry.TABLE_NAME, null, contentValues);
                 if (loc_id > 0)
                     returnUri = LocationEntry.buildLocationUri(loc_id);
@@ -229,7 +228,7 @@ public class WeatherProvider extends ContentProvider {
     private void normalizeDate(ContentValues values) {
         if (values.containsKey(WeatherEntry.COLUMN_DATE)) {
             long dateValue = values.getAsLong(WeatherEntry.COLUMN_DATE);
-            values.put(WeatherEntry.COLUMN_DATE, WeatherEntry.normalizeDate(dateValue));
+            values.put(WeatherEntry.COLUMN_DATE, Utility.normalizeDate(dateValue));
         }
     }
 
@@ -244,7 +243,7 @@ public class WeatherProvider extends ContentProvider {
                 int returnCount = 0;
                 try {
                     for (ContentValues value : values) {
-                    //    normalizeDate(value);
+                        normalizeDate(value);
                         long _id = db.insert(WeatherEntry.TABLE_NAME, null, value);
                         if (_id != -1) {
                             returnCount++;
