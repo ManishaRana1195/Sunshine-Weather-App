@@ -25,11 +25,11 @@ public class ForecastAdapter extends CursorAdapter {
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup viewGroup) {
         int layoutID = -1;
-        if (getItemViewType(cursor.getPosition()) == VIEW_TYPE_FUTURE)
+        if (getItemViewType(cursor.getPosition()) == VIEW_TYPE_FUTURE) {
             layoutID = R.layout.list_item_forecast;
-        else
+        }else {
             layoutID = R.layout.list_item_forecast_today;
-
+        }
         View view = LayoutInflater.from(context).inflate(layoutID, viewGroup, false);
 
         ViewHolder viewHolder = new ViewHolder(view);
@@ -52,10 +52,19 @@ public class ForecastAdapter extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
         ViewHolder viewHolder = (ViewHolder) view.getTag();
 
-        int weatherId = cursor.getInt(ForecastFragment.COL_WEATHER_ID);
-
-        viewHolder.iconView.setImageResource(R.mipmap.ic_launcher);
-
+        int viewType = getItemViewType(cursor.getPosition());
+        switch (viewType) {
+            case VIEW_TYPE_TODAY: {
+                viewHolder.iconView.setImageResource(Utility.getArtResourceForWeatherCondition(
+                        cursor.getInt(ForecastFragment.COL_WEATHER_CONDITION_ID)));
+                break;
+            }
+            case VIEW_TYPE_FUTURE: {
+                viewHolder.iconView.setImageResource(Utility.getIconResourceForWeatherCondition(
+                        cursor.getInt(ForecastFragment.COL_WEATHER_CONDITION_ID)));
+                break;
+            }
+        }
 
         long dateInMillis = cursor.getLong(ForecastFragment.COL_WEATHER_DATE);
         viewHolder.dateView.setText(Utility.getFormattedDate(dateInMillis));  // get Utility.getFriendlyDayString(context, dateInMillis))
