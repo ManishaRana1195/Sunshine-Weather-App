@@ -37,7 +37,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
             WeatherEntry.COLUMN_DATE,
             WeatherEntry.COLUMN_DESC,
             WeatherEntry.COLUMN_MAX,
-            WeatherEntry.COLUMN_MAX,
+            WeatherEntry.COLUMN_MIN,
             WeatherEntry.COLUMN_HUMIDITY,
             WeatherEntry.COLUMN_PRESSURE,
             WeatherEntry.COLUMN_WIND_SPEED,

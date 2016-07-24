@@ -26,4 +26,9 @@
     <string name="format_wind_kmh">Wind: <xliff:g id="speed">%1$1.0f</xliff:g> km/h <xliff:g id="direction">%2$s</xliff:g></string>
     <string name="format_pressure">Pressure: <xliff:g id="pressure">%1.0f</xliff:g> hPa</string>
     <string name="format_humidity">Humidity: <xliff:g id="humidity">%1.0f</xliff:g> %%</string>
+    <string name="satellite_view">Satellite View</string>
+    <string name="Satellite_View">Satellite View</string>
+    <string name="seasia">seasia</string>
+    <string name="select_region">Select Region</string>
+    <string name="preference_default_satellite_region">default satellite region</string>
 </resources>

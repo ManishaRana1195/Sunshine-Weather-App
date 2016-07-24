@@ -149,7 +149,7 @@ public class WeatherProvider extends ContentProvider {
 
         switch (uriMatcher.match(uri)) {
             case WEATHER:
-                normalizeDate(contentValues);
+                //normalizeDate(contentValues);
                 long _id = db.insert(WeatherEntry.TABLE_NAME, null, contentValues);
                 if (_id > 0)
                     returnUri = WeatherEntry.buildWeatherUri(_id);
@@ -209,7 +209,7 @@ public class WeatherProvider extends ContentProvider {
 
         switch (uriMatcher.match(uri)) {
             case WEATHER:
-                normalizeDate(values);
+              //  normalizeDate(values);
                 rowsUpdated = db.update(WeatherEntry.TABLE_NAME, values, selection, selectionArgs);
                 break;
 
@@ -225,12 +225,12 @@ public class WeatherProvider extends ContentProvider {
         return rowsUpdated;
     }
 
-    private void normalizeDate(ContentValues values) {
-        if (values.containsKey(WeatherEntry.COLUMN_DATE)) {
-            long dateValue = values.getAsLong(WeatherEntry.COLUMN_DATE);
-            values.put(WeatherEntry.COLUMN_DATE, Utility.normalizeDate(dateValue));
-        }
-    }
+//    private void normalizeDate(ContentValues values) {
+//        if (values.containsKey(WeatherEntry.COLUMN_DATE)) {
+//            long dateValue = values.getAsLong(WeatherEntry.COLUMN_DATE);
+//            values.put(WeatherEntry.COLUMN_DATE, Utility.normalizeDate(dateValue));
+//        }
+//    }
 
     @Override
     public int bulkInsert(Uri uri, ContentValues[] values) {
@@ -243,7 +243,7 @@ public class WeatherProvider extends ContentProvider {
                 int returnCount = 0;
                 try {
                     for (ContentValues value : values) {
-                        normalizeDate(value);
+                      //  normalizeDate(value);
                         long _id = db.insert(WeatherEntry.TABLE_NAME, null, value);
                         if (_id != -1) {
                             returnCount++;

@@ -7,4 +7,16 @@
         <item>metric</item>
         <item>imperial</item>
     </string-array>
+    <string-array name="satellite_region_keys">
+        <item>SouthEast Asia</item>
+        <item>Europe</item>
+        <item>Africa</item>
+        <item>Australia</item>
+    </string-array>
+    <string-array name="satellite_region_values">
+        <item>seasia</item>
+        <item>eu</item>
+        <item>af</item>
+        <item>au</item>
+    </string-array>
 </resources>

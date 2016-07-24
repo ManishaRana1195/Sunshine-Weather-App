@@ -19,6 +19,7 @@
             android:theme="@style/AppTheme"> </activity>
         <activity android:name=".Activities.SettingsActivity" android:parentActivityName=".Activities.MainActivity" android:label="@string/action_settings"
             android:theme="@style/AppTheme"> </activity>
+        <activity android:name=".Activities.SatelliteImageActivity" android:parentActivityName=".Activities.ForecastDetailActivity" android:label="@string/Satellite_View" android:theme="@style/AppTheme"/>
         <provider
             android:authorities="com.example.manisharana.sunshine"
             android:name=".Providers.WeatherProvider"

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.text.format.Time;
 
+import com.example.manisharana.sunshine.Activities.SatelliteImageActivity;
 import com.example.manisharana.sunshine.Data.WeatherEntry;
 
 import java.text.DateFormat;
@@ -50,9 +51,7 @@ public class Utility {
         return prefs.getString(context.getString(R.string.preference_default_unit), context.getString(R.string.metric)).equals(context.getString(R.string.metric));
     }
 
-    public static long normalizeDate(long startDate) {
-        GregorianCalendar gc = new GregorianCalendar();
-        gc.setTimeInMillis(startDate);
+    public static long normalizeDate(GregorianCalendar gc) {
         gc.set(GregorianCalendar.HOUR_OF_DAY, 0);
         gc.set(GregorianCalendar.MINUTE, 0);
         gc.set(GregorianCalendar.SECOND, 0);
@@ -132,4 +131,8 @@ public class Utility {
         return -1;
     }
 
+    public static String getSatelliteImagePrefLocation(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getString(context.getString(R.string.preference_default_satellite_region),context.getString(R.string.seasia));
+    }
 }

@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.manisharana.sunshine.Activities.ForecastDetailActivity;
+import com.example.manisharana.sunshine.Activities.SatelliteImageActivity;
 import com.example.manisharana.sunshine.Adapters.ForecastAdapter;
 import com.example.manisharana.sunshine.Data.LocationEntry;
 import com.example.manisharana.sunshine.Data.WeatherEntry;
@@ -111,6 +112,10 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
                     startActivity(viewIntent);
                 }
                 return true;
+            case R.id.action_view_satellite:
+                Intent satelliteIntent = new Intent(getActivity(), SatelliteImageActivity.class);
+                startActivity(satelliteIntent);
+                return  true;
             default:
                 return super.onOptionsItemSelected(item);
         }

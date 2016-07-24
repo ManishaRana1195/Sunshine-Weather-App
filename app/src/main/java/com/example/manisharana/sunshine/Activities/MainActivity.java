@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         String location = Utility.getPreferredLocation( this );
-        if (location != null && !location.equals(mLocation)) {
+        if ((location != null && !location.equals(mLocation))){
             ForecastFragment ff = (ForecastFragment)getSupportFragmentManager().findFragmentById(R.id.weekly_forecast_fragment);
             if ( null != ff ) {
                 ff.onLocationChanged();

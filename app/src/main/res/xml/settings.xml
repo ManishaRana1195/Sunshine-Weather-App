@@ -19,4 +19,12 @@
         android:title="@string/days"
         android:key="@string/preference_default_days"
         android:defaultValue="@string/week"/>
+    <ListPreference
+        android:title="@string/satellite_view"
+        android:defaultValue="@string/seasia"
+        android:dialogTitle="@string/select_region"
+        android:key="@string/preference_default_satellite_region"
+        android:entries="@array/satellite_region_keys"
+        android:entryValues="@array/satellite_region_values"/>
+
 </PreferenceScreen>

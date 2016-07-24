@@ -24,6 +24,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.Vector;
 
 import okhttp3.OkHttpClient;
@@ -65,7 +66,7 @@ public class WeatherHttpClient extends AsyncTask<String, Void, Void>{
 
 
     public void getWeatherForecastData(String jsonStr, String locationSetting) {
-        GregorianCalendar gc = new GregorianCalendar();
+        GregorianCalendar gc = new GregorianCalendar(TimeZone.getTimeZone("India/Kolkata"));
 
 
         try {
@@ -97,11 +98,10 @@ public class WeatherHttpClient extends AsyncTask<String, Void, Void>{
                 String desc = weatherObject.getString("main");
                 int weatherId = weatherObject.getInt("id");
 
-                gc.add(GregorianCalendar.DATE, i);
 
                 ContentValues contentValues = new ContentValues();
                 contentValues.put(WeatherEntry.COLUMN_LOCATION_ID, locationId);
-                contentValues.put(WeatherEntry.COLUMN_DATE,gc.getTimeInMillis());
+                contentValues.put(WeatherEntry.COLUMN_DATE, Utility.normalizeDate(gc));
                 contentValues.put(WeatherEntry.COLUMN_DESC, desc);
                 contentValues.put(WeatherEntry.COLUMN_MAX, max);
                 contentValues.put(WeatherEntry.COLUMN_MIN, min);
@@ -110,7 +110,7 @@ public class WeatherHttpClient extends AsyncTask<String, Void, Void>{
                 contentValues.put(WeatherEntry.COLUMN_DEGREES, windDeg);
                 contentValues.put(WeatherEntry.COLUMN_WIND_SPEED, windSpeed);
                 contentValues.put(WeatherEntry.COLUMN_WEATHER_ID, weatherId);
-
+                gc.add(Calendar.DATE, 1);
                 cvVector.add(contentValues);
             }
             int inserted = 0;
